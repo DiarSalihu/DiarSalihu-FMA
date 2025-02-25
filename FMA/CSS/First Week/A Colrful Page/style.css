@@ -1,0 +1,24 @@
+body {
+
+    background-image: url(/FMA/CSS/images/Nature\ winter.jpg);
+}
+
+.colour {
+    background-color: rgb(rgb(231, 117, 117), rgb(21, 211, 21), rgb(40, 40, 223));
+    color: rgb(38, 207, 207);
+}
+
+.paragraf {
+    background-color: rgb(135, 83, 187);
+    color: rgb(140, 127, 255);
+}
+
+.space {
+    background-color: rgb(136, 136, 20);
+    color: rgb(25, 114, 37);
+}
+.why{
+background-color: rgb(red, green, blue);
+    color: blue;
+
+}
