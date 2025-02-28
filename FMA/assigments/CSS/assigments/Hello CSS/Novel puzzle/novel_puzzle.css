@@ -17,6 +17,7 @@
     font-size: 20px;
     text-transform: uppercase;
     line-height: 0.65;
+   
 }
 
 .second-novel {
@@ -26,7 +27,8 @@
 .first {
     font-size: 60px;
     font-weight: 1000;
-
+    text-decoration: underline rgb(255, 106, 6);
+    text-align: right
 }
 
 .secondd {
@@ -44,6 +46,7 @@
     font-weight: 999;
     line-height: 35px;
     float: left;
+  
 }
 .secondofthird{
 font-size: 20px;

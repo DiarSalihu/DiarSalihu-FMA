@@ -1,0 +1,40 @@
+.p{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+
+}
+
+body {
+
+    background-color: rgb(172, 248, 248);
+}
+
+.photo {
+    float: left;
+    margin-right: 0.5px;
+    margin-top: 0.2px;
+    padding: 3px;
+    border: 0.1px solid rgb(3, 157, 168);
+
+}
+
+.long-text {
+    margin-left: 0.5px;
+    margin-top: 0.2rem;
+ text-align: right;
+}
+
+.line {
+    margin-right: 0.1px;
+    margin-top: 0.3px;
+
+}
+
+img:hover {
+    cursor: pointer;
+    width: 310px;
+    border-style: dashed;
+    border-color: red;
+    padding: 0.5rem;
+    padding-right: 0.8rem;
+    margin-top: 0.4rem;
+}
