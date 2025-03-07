@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.prtcards {
+    border: solid 7px;
+    border-radius: 50%;
+    width: 200px;
+    padding: 13px;
+
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 10px;
+    margin-left: 500px;
+    margin-top: 200px;
+
+}
+
+.button {
+    color: aqua;
+    background-color: rgb(184, 52, 184);
+}
+
+button:hover {
+    cursor: pointer;
+    color: gold;
+    background-color: white;
+}
