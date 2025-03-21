@@ -80,6 +80,7 @@ body {
     border: 3px solid rgba(0, 0, 0, 0.795);
     border-radius: 20px;
     text-align: center;
+    padding: 25px;
 }
 
 .my-skills:hover {
@@ -105,8 +106,13 @@ body {
 }
 
 button {
-    background-color: orangered;
+    background-color: rgb(253, 108, 55);
     color: rgb(255, 255, 255);
+}
+
+button:hover {
+    background-color: orangered;
+
 }
 
 .rights {

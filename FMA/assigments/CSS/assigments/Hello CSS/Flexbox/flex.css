@@ -1,0 +1,44 @@
+body{
+    font-family: 'Times New Roman', Times, serif;
+    background-image: url(photo\ background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.intro {
+    text-align: center;
+
+}
+
+.nd-intro{
+    text-align: center;
+}
+
+.first_box {
+    border: 7px solid rgb(231, 191, 191);
+    background-color: rgb(114, 171, 224);
+    justify-content: center;
+    margin: 1em;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    flex-wrap: wrap;
+}
+.first_box:hover{
+    background-color: aquamarine; }
+
+.inside_1 {
+    border: 3px solid rgb(202, 88, 212);
+    background-color: rgba(255, 0, 191, 0.699);
+    border-radius: 20px;
+    padding: 10px;
+
+}
+.inside_1:hover{
+    background-color: rgb(175, 38, 216);
+    }
+.logo{
+    text-align: center;
+}
