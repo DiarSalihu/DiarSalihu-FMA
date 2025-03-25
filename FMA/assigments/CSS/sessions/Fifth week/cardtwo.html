@@ -15,25 +15,34 @@
 
         .card {
             border: 5px solid black;
+
+        }
+
+        .wrapper {
+            display: flex;
+            width: 30px;
+            height: 30;
         }
 
         .left-card {
             border: 1px solid black;
             align-items: center;
             text-align: center;
-            font-size: 90px;
-      
+            font-size: 78px;
+
         }
 
         .right-card {
             border: 1px solid black;
             align-items: center;
             text-align: center;
+            font-size: 70px;
             flex-direction: column;
         }
 
         .card-body {
             border: 2px solid black;
+            background-color: red;
         }
 
         #date {
@@ -52,11 +61,13 @@
 
 <body>
     <div class="card">
-        <div class="left-card">40c</div>
-        <div class="right-card">
-            <div id="date">29</div>
-            <div id="month">JAN</div>
-            <div id="nr">02461</div>
+        <div class="wrapper">
+            <div class="left-card">40c</div>
+            <div class="right-card">
+                <div id="date">29</div>
+                <div id="month">JAN</div>
+                <div id="nr">02461</div>
+            </div>
         </div>
         <div class="card-body"><img src="Deadpool3original-removebg-preview.png" alt=""></div>
     </div>
