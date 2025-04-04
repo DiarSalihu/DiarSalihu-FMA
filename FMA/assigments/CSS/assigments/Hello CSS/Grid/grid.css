@@ -1,0 +1,30 @@
+body {
+    padding: 0;
+    margin: 0;
+    background-color: bisque;
+    display: grid;
+   grid-template-rows: 90px 2fr 90px;
+   grid-template-columns: 1fr 2fr 1fr;
+   place-content: center;
+   align-content: center;
+}
+
+.blog-post-background {
+    background-color: rgba(15, 235, 125, 0.692);
+    height: 100px;
+    border-radius: 0px 0px 25px 25px;
+grid-column: 1/4;
+    
+}
+.blog-post-text {
+   grid-row: 2/3;
+   grid-column: 2/3;
+    border: solid 6px rgb(177, 144, 1);
+    align-items: center;
+    text-align: center;
+    border-radius: 30px;
+    background-color: rgb(255, 255, 255);
+    
+   
+   
+}

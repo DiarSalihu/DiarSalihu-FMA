@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 30%;
+            height: 30%;
+            border-radius: 30px;
+        }
+
+        img:hover {
+            filter: blur(15px);
+            transform: rotate(720deg);
+            transition: transform 0.7s ease-in-out;
+        }
+
+        .boomerang {
+            width: 20%;
+            height: 20%;
+            border-radius: 90px;
+            color: aqua;
+        }
+
+        .boomerang:hover {
+            filter: blur(0px);
+            transform: rotate(720deg);
+            transition: transform 0.7s ease-in-out;
+            background-color: darkblue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <img src="earthy.jpeg" alt="">
+    <img class="boomerang" src="boomerang.jpg" alt="">
+</body>
+
+</html>
