@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /// Were doing, If the number is even then divide it by two,
+        /// otherwise multiply it by three and add one.
+        ///This will generate a new number and then we apply the same operation. We do this without stopping and eventually
+        /// (hopefully) you will reach the number 1 at which point you should stop Here's an example where we start from 5:
+
+        let number = parseInt(prompt(`Please write a number:`));
+        if (isNaN(number) || number <= 0) {
+            throw new Error(`Please write a positive number!`);
+        }
+        else {
+            let comma = "" + number;
+
+            for (; number !== 1;) {
+                if (number % 2 === 0) {
+                    number = number / 2;
+                }
+                else if (number % 2 !== 0) {
+                    number = number * 3 + 1;
+                }
+                comma += "," + number;
+            }
+            console.log(comma)
+        }
+
+        /// !== -> eshte jo e barabarte
+
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>
