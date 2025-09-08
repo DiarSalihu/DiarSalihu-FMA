@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: rgb(173, 216, 230);
+            font-family: sans-serif;
+        }
+
+        #contanier {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid black;
+            width: 650px;
+            height: auto;
+            margin: 100px;
+            margin-left: 25%;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        button {
+            background-color: rgb(57, 57, 230);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 20px;
+            padding: 8px 16px;
+            margin-bottom: 10px;
+            margin-right: -10px;
+        }
+
+        #butoni {
+            display: flex;
+            justify-content: end;
+            padding: 10px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background-color: rgb(32, 32, 252);
+        }
+
+        table {
+            border-collapse: collapse;
+            background-color: lightblue;
+            color: black;
+            margin-left: 60px;
+        }
+
+        #text {
+            padding: 5px 10px 5px 10px;
+            font-size: 20px;
+        }
+
+        #update {
+            margin-top: 100px;
+            width: 340px;
+            height: 360px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 1px 1px 77px -1px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 1px 1px 77px -1px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 1px 1px 77px -1px rgba(0, 0, 0, 0.75);
+            position: fixed;
+            top: 90px;
+            right: 550px;
+            display: none;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .top {
+            background-color: rgb(57, 57, 230);
+            color: white;
+            padding: 10px;
+            font-size: 20px;
+            border: none;
+        }
+
+        input {
+            width: 280px;
+            padding: 7px;
+            margin: 10px;
+        }
+
+        #gender {
+            padding: 7px;
+            width: 300px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .edit-btn,
+        .remove-btn {
+            background-color: rgb(57, 57, 230);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            margin: 10px 5px;
+        }
+
+        #button-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .butonn {
+            margin-right: 5px;
+        }
+
+        .buton {
+            margin-right: 15px;
+        }
+
+        img {
+            margin-left: 15px;
+            margin-top: 7px;
+        }
+
+        .new-row {
+            background-color: white;
+            text-align: center;
+        }
+
+        .new-row td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="contanier">
+
+        <div id="butoni">
+            <button>Add Student</button>
+        </div>
+
+        <table border="1">
+            <tr id="heading">
+                <td id="text">Year</td>
+                <td id="text">Student Name</td>
+                <td id="text">Photo</td>
+                <td id="text">GPA</td>
+                <td id="text">Actions</td>
+            </tr>
+            <tbody id="tableBody"></tbody>
+        </table>
+
+    </div>
+
+    <div id="update">
+        <header>
+            <div class="top">Add Student</div>
+        </header>
+        <main>
+            <div class="list">
+                <form action="">
+                    <input type="text" id="year" placeholder="Year">
+                    <input type="text" id="student" placeholder="Student Name">
+                    <select id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                    <input type="text" id="gpa" placeholder="GPA">
+                </form>
+            </div>
+        </main>
+        <hr>
+        <footer>
+            <div id="button-container">
+                <button class="butonn" id="cancel">Cancel</button>
+                <button class="buton" id="submit">Submit</button>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        const femalePic = `avatar-woman.png`;
+        const malePic = `male-face.jpg`;
+
+        let year = document.getElementById(`year`);
+        let studentName = document.getElementById(`student`);
+        const gender = document.getElementById(`gender`);
+        let gpa = document.getElementById(`gpa`);
+        let tableBody = document.getElementById('tableBody');
+
+        let butoni = document.getElementById(`butoni`);
+        let update = document.getElementById(`update`);
+
+        butoni.addEventListener(`click`, () => {
+            update.style.display = `flex`;
+        });
+
+        document.getElementById(`cancel`).addEventListener(`click`, () => {
+            update.style.display = `none`;
+        });
+
+        document.getElementById(`submit`).addEventListener(`click`, (e) => {
+            e.preventDefault();
+
+            const photoURL = gender.value === 'female' ? femalePic : malePic;
+
+            const newRow = document.createElement(`tr`);
+            newRow.classList.add('new-row'); 
+
+            newRow.innerHTML = `
+                <td>${year.value}</td>
+                <td>${studentName.value}</td>
+                <td><img src="${photoURL}" alt="photo" width="55" height="55"></td>
+                <td>${gpa.value}</td>
+                <td>
+                    <button class="edit-btn">Edit</button>
+                    <button class="remove-btn">Remove</button>
+                </td>
+            `;
+
+            tableBody.appendChild(newRow);
+            update.style.display = `none`;
+
+            const editBtn = newRow.querySelector(`.edit-btn`);
+            const removeBtn = newRow.querySelector(`.remove-btn`);
+
+            removeBtn.addEventListener(`click`, () => {
+                newRow.remove();
+            });
+
+            editBtn.addEventListener(`click`, () => {
+                year.value = newRow.children[0].textContent;
+                studentName.value = newRow.children[1].textContent;
+                gender.value = photoURL === femalePic ? 'female' : 'male';
+                gpa.value = newRow.children[3].textContent;
+
+                newRow.remove();
+                update.style.display = 'flex';
+            });
+
+            clearForm();
+        });
+
+        function clearForm() {
+            year.value = '';
+            studentName.value = '';
+            gpa.value = '';
+            gender.value = 'female';
+        }
+    </script>
+
+</body>
+</html>

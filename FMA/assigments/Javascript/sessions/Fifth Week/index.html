@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <script>
+
+        ///objektet jane variabla te cilat na ndihmojne per informatat e nje personi(shembull);
+
+        ///getName me parameter
+        ///setName pa parameter
+
+
+        ///Detyra
+
+        ///Create an object called circle which has a radius property which represents its radius. Create getters and setters for this radius.
+        ///Add two functions called getArea and getPerimeter to this object, which return the area and perimeter of the circle.
+        ///Add a center property to this circle which represents the center of the circle.This property is also an object with two properties x and y.
+        ///Add a getCenter function which returns the center object
+        /// Add a setCenter function to update the center of the circle
+        ///Create a grow function which accepts a number argument.This function increases the radius of the circle by that number.
+        ///Create a shrink function which decreases the radius of the circle
+        ///Create a printDetails function which prints to the console details about the circle like its radius and position
+
+        let object = {
+            circle: 'Lagrge Sircle',
+            radius: '360dgr',
+
+            getRadius: function () {
+                return this.radius;
+            },
+            setRadius: function (newrardius) {
+                this.radius = newrardius;
+            },
+
+        };
+        console.log(`radius:`, object.getRadius());
+        object.setRadius(300);
+        console.log(`radius:`, object.getRadius());
+
+
+        let circle = {
+           perimeter: 120,
+            area: 65,
+            getArea: function () {
+                 return this.perimeter * this.area;
+            },
+           
+            getPerimeter: function () {
+                return this.perimeter * 2 + this.area * 2;
+            }
+        }
+        console.log(`perimeter`, circle.getPerimeter);
+        console.log(`area`, circle.getArea);
+    </script>
+
+</body>
+
+</html>

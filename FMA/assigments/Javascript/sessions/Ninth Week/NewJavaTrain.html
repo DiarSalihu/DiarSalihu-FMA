@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Student Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
+
+        body {
+            background: #f4f6fa;
+            padding: 40px 0;
+        }
+
+        .wrapper {
+            max-width: 800px;
+            margin: auto;
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+        }
+
+        .wrapper>div:first-child {
+            text-align: right;
+        }
+
+        button {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            font-size: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #4338ca;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 15px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        th {
+            background-color: #eef2ff;
+            color: #1e293b;
+        }
+
+        td img {
+            width: 50px;
+            border-radius: 6px;
+        }
+
+        /* Modal */
+        .movieModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 420px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            z-index: 1000;
+        }
+
+        .movieModal header {
+            background: #4f46e5;
+            color: white;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .movieModal main {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .movieModal main input,
+        .movieModal main select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        .movieModal main input:focus,
+        .movieModal main select:focus {
+            border-color: #4f46e5;
+        }
+
+        .movieModal footer {
+            padding: 20px;
+            border-top: 1px solid #e2e8f0;
+            text-align: right;
+        }
+
+        .movieModal footer button {
+            margin-left: 10px;
+            background-color: #4f46e5;
+            padding: 8px 14px;
+            font-size: 14px;
+            border-radius: 8px;
+        }
+
+        .movieModal footer button:first-child {
+            background-color: #94a3b8;
+        }
+
+        .movieModal footer button:first-child:hover {
+            background-color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            .wrapper {
+                width: 90%;
+                padding: 20px;
+            }
+
+            .movieModal {
+                width: 90%;
+            }
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <div>
+            <button id="addBTN">Add Student</button>
+        </div>
+        <table border="1" cellpadding="5">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Student Name</th>
+                    <th>Photo</th>
+                    <th>GPA</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="allStudents"></tbody>
+        </table>
+    </div>
+
+    <div class="movieModal" id="movieModal">
+        <header>
+            <h2 id="modalTitle">Add Student</h2>
+        </header>
+        <main>
+            <div><input type="number" id="year" placeholder="Year"></div>
+            <div><input type="text" id="studentName" placeholder="Student Name"></div>
+            <div>
+                <select id="thumb">
+                    <option value="studenti.png">Male</option>
+                    <option value="studente.jpg">Female</option>
+                </select>
+            </div>
+            <div><input type="number" id="gpa" placeholder="GPA"></div>
+        </main>
+        <footer>
+            <button id="cancelBTN">Cancel</button>
+            <button id="submitBTN">Submit</button>
+        </footer>
+    </div>
+
+    <script>
+        let allData = [
+            {
+                year: "2024",
+                name: "John Doe",
+                thumb: "student1.jpg",
+                reviews: "3.8"
+            },
+            {
+                year: "2023",
+                name: "Anna Smith",
+                thumb: "student2.jpg",
+                reviews: "4.0"
+            }
+        ];
+
+        const allStudents = document.querySelector("#allStudents");
+        const addBTN = document.querySelector("#addBTN");
+        const movieModal = document.querySelector("#movieModal");
+        const cancelBTN = document.querySelector("#cancelBTN");
+        const submitBTN = document.querySelector("#submitBTN");
+        const year = document.querySelector("#year");
+        const studentName = document.querySelector("#studentName");
+        const thumb = document.querySelector("#thumb");
+        const gpa = document.querySelector("#gpa");
+        const modalTitle = document.querySelector("#modalTitle");
+
+        let editAction = false;
+        let currentStudent = 0;
+
+        listTable();
+
+        function listTable() {
+            let recordsHTML = '';
+            for (let i = 0; i < allData.length; i++) {
+                recordsHTML += "<tr>";
+                recordsHTML += `
+          <td>${allData[i].year}</td>
+          <td>${allData[i].name}</td>
+          <td><img width="50" src="${allData[i].thumb}" alt=""></td>
+          <td>${allData[i].reviews}</td>
+          <td>
+            <button onclick="editStudent(${i})">Edit</button> 
+            <button onclick="removeStudent(${i})">Remove</button>
+          </td>
+        `;
+                recordsHTML += "</tr>";
+            }
+
+            allStudents.innerHTML = recordsHTML;
+        }
+
+        addBTN.addEventListener("click", () => {
+            movieModal.style.display = "block";
+        });
+
+        cancelBTN.addEventListener("click", removeModal);
+
+        submitBTN.addEventListener("click", submitForm);
+
+        function submitForm() {
+            modalTitle.textContent = "Add Student";
+            if (!editAction) {
+                let objStudent = {};
+                objStudent.year = year.value;
+                objStudent.name = studentName.value;
+                objStudent.thumb = thumb.value;
+                objStudent.reviews = gpa.value;
+
+                allData.push(objStudent);
+            } else {
+                let editStudentItem = {};
+                editStudentItem.year = year.value;
+                editStudentItem.name = studentName.value;
+                editStudentItem.thumb = thumb.value;
+                editStudentItem.reviews = gpa.value;
+                allData[currentStudent] = editStudentItem;
+                editAction = false;
+            }
+
+            removeModal();
+            listTable();
+        }
+
+        function removeModal() {
+            year.value = "";
+            studentName.value = "";
+            gpa.value = "";
+            editAction = false;
+            modalTitle.textContent = "Add Student";
+            movieModal.style.display = "none";
+        }
+
+        function editStudent(m) {
+            currentStudent = m;
+            editAction = true;
+            movieModal.style.display = "block";
+            modalTitle.textContent = "Edit Student";
+            year.value = allData[currentStudent].year;
+            studentName.value = allData[currentStudent].name;
+            gpa.value = allData[currentStudent].reviews;
+            thumb.value = allData[currentStudent].thumb;
+        }
+
+        function removeStudent(m) {
+            allData.splice(m, 1);
+            listTable();
+        }
+    </script>
+
+</body>
+
+</html>

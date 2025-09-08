@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button id="btn">click here!</button>
+    <p>HI</p>
+    <p>Salve</p>
+    <script>
+
+        ///dom - dokumnet object model
+        let myBtn = document.getElementById('btn');
+        myBtn.style.backgroundColor = 'blue';
+        myBtn.style.color = 'white';
+        myBtn.textContent = 'Hi! How are you?'
+
+        let paragraf = document.querySelector('p');
+        paragraf.style.backgroundColor = 'green';
+
+        let heading = document.createElement('h1');
+        heading.innerHTML = 'Hello, I am a JS student';
+
+        document.body.appendChild(heading);///shfaqja e heading se eshte virtual vec eshte i krijuar, dhe nuk kemi mundesi me paraqit sepse nuk eshte ne body
+    </script>
+</body>
+
+</html>

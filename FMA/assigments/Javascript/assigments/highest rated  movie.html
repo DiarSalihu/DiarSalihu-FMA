@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Rated Movies</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #1e1e2f;
+      color: #f4f4f4;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      color: #ffcc00;
+    }
+
+    .movie-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .movie-card {
+      background: #292940;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .movie-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+    }
+
+    .highest-rated {
+      background: linear-gradient(135deg, #ffe259, #ffa751);
+      color: #1e1e2f;
+      border: 3px solid #fff;
+      font-weight: bold;
+    }
+
+    .movie-title {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .movie-rating {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #aaaaaa;
+    }
+
+    .highest-rated .movie-rating {
+      color: #333;
+    }
+
+    .movie-actors {
+      font-size: 0.95rem;
+      line-height: 1.4;
+    }
+
+    .highest-rated .movie-actors {
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎬 Top Rated Movies</h1>
+  <div class="movie-container" id="movieContainer"></div>
+
+  <script>
+    let movies = [
+      {
+          name: 'The Godfather',
+          releaseYear: 1972,
+          rating: 9.2,
+          mainActors: ['Marlon Brando', 'Al Pacino', 'James Caan']
+      },
+      {
+          name: 'The Shawshank Redemption',
+          releaseYear: 1994,
+          rating: 9.3,
+          mainActors: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton']
+      },
+      {
+          name: 'Pulp Fiction',
+          releaseYear: 1994,
+          rating: 8.9,
+          mainActors: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson']
+      },
+      {
+          name: 'The Dark Knight',
+          releaseYear: 2008,
+          rating: 9.0,
+          mainActors: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart']
+      },
+      {
+          name: 'Forrest Gump',
+          releaseYear: 1994,
+          rating: 8.8,
+          mainActors: ['Tom Hanks', 'Robin Wright', 'Gary Sinise']
+      }
+    ];
+
+    // Sort movies by rating descending
+    movies.sort((a, b) => b.rating - a.rating);
+
+    const container = document.getElementById('movieContainer');
+
+    movies.forEach((movie, index) => {
+      const card = document.createElement('div');
+      card.className = 'movie-card';
+      if (index === 0) {
+        card.classList.add('highest-rated');
+      }
+
+      card.innerHTML = `
+        <div class="movie-title">${movie.name} (${movie.releaseYear})</div>
+        <div class="movie-rating">⭐ Rating: ${movie.rating}</div>
+        <div class="movie-actors"><strong>Main Actors:</strong><br> ${movie.mainActors.join(', ')}</div>
+      `;
+
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
